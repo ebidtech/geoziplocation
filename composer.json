@@ -1,9 +1,9 @@
 {
-    "name": "ebidtech/geozipcity",
+    "name": "ebidtech/geoziplocation",
     "type": "library",
-    "description": "Geo zipcode city",
-    "keywords": ["geo", "zipcode", "city", "php"],
-    "homepage": "http://github.com/ebidtech/geozipcity",
+    "description": "Geo zipcode location",
+    "keywords": ["geo", "zipcode", "location", "php"],
+    "homepage": "http://github.com/ebidtech/geoziplocation",
     "license": "MIT",
     "authors": [
         {
@@ -19,8 +19,8 @@
         "phpunit/phpunit": "3.7.*"
     },
     "autoload": {
-        "psr-0": { "EBT\\GeoZipCity": "" }
+        "psr-0": { "EBT\\GeoZipLocation": "" }
     },
     "minimum-stability": "dev",
-    "target-dir": "EBT/GeoZipCity"
+    "target-dir": "EBT/GeoZipLocation"
 }
