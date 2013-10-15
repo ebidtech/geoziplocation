@@ -14,6 +14,16 @@ use EBT\GeoZipLocation\Core\LocationRepository;
 
 class AreaRepository extends  LocationRepository
 {
+    const LOCATION_TYPE = 'area';
+
+    /**
+     * @inheritdoc
+     */
+    public function getType()
+    {
+        return self::LOCATION_TYPE;
+    }
+
     /**
      * Returns all locations of this type
      *
@@ -24,13 +34,4 @@ class AreaRepository extends  LocationRepository
         // TODO: Implement getAll() method.
     }
 
-    /**
-     * Returns type of location handled by this repository
-     *
-     * @return string
-     */
-    public function getType()
-    {
-        // TODO: Implement getType() method.
-    }
 }
