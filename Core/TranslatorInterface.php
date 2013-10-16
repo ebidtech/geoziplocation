@@ -10,7 +10,7 @@
 namespace EBT\GeoZipLocation\Core;
 
 use EBT\GeoZipLocation\Core\LocationInterface;
-
+use EBT\GeoZipLocation\Exception\ResourceNotFoundException;
 
 interface TranslatorInterface
 {
@@ -20,6 +20,8 @@ interface TranslatorInterface
      * @param string $zipCode
      *
      * @return LocationInterface
+     *
+     * @throws ResourceNotFoundException
      */
     public function getLocationForZip($zipCode);
 

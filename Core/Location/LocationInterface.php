@@ -7,8 +7,13 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-namespace EBT\GeoZipLocation\Core;
+namespace EBT\GeoZipLocation\Core\Location;
 
+/**
+ * Class LocationInterface
+ * There is an abstract class Location to help you and avoid repeat some code.
+ *
+ */
 interface LocationInterface
 {
     /**

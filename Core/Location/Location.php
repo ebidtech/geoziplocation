@@ -7,8 +7,15 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-namespace EBT\GeoZipLocation\Core;
+namespace EBT\GeoZipLocation\Core\Location;
 
+use EBT\GeoZipLocation\Core\Repository\LocationRepositoryInterface;
+
+/**
+ * Class Location
+ * One just needs to implement LocationInterface however one can extend this class in order to avoid repeat code
+ *
+ */
 abstract class Location implements LocationInterface
 {
     /**
@@ -37,7 +44,7 @@ abstract class Location implements LocationInterface
     protected $lng;
 
     /**
-     * @var LocationRepository
+     * @var LocationRepositoryInterface
      */
     protected $repo;
 
@@ -188,12 +195,12 @@ abstract class Location implements LocationInterface
     /**
      * Returns Location's Repository
      *
-     * @return LocationRepository
+     * @return LocationRepositoryInterface
      */
-    public function getRepository()
-    {
-        return $this->repo;
-    }
+    abstract  public function getRepository();
+//    {
+//        return $this->repo;
+//    }
 
     /**
      * Returns type of this location.

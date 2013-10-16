@@ -16,7 +16,7 @@ use EBT\GeoZipLocation\Core\TranslatorInterface;
  */
 class TranslatorFactory
 {
-    const TRANSLATORS_NAMESPACE = 'EBT\GeoZipLocation\Translators';
+    const TRANSLATORS_NAMESPACE = 'EBT\GeoZipLocation\Translator';
 
     /**
      * Creates a new translator

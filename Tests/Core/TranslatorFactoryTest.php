@@ -18,19 +18,13 @@ use PHPUnit_Framework_TestCase;
  */
 class TranslatorFactoryTest extends PHPUnit_Framework_TestCase
 {
+    /**
+     * testCreatePT
+     */
     public function testCreatePT()
     {
-//        $cTranslator = $this->getMock('EBT\GeoZipLocation\Core\TranslatorInterface');
-//        $cTranslator->expects($this->once())
-//            ->method('getCountryCode')
-//            ->will($this->returnValue('PT'));
         $f = new TranslatorFactory();
         $ptTranslator = $f->create('PT');
         $this->assertInstanceOf('EBT\GeoZipLocation\Core\TranslatorInterface', $ptTranslator);
-
-        $l = $ptTranslator->getLocationForZip('4480-460');
-        echo $l->getType();
-        echo $l->getName();
-        echo $l->getId();
     }
 }

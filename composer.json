@@ -11,7 +11,7 @@
             "email": "developers@emailbidding.com"
         }
     ],
-    "minimum-stability": "dev",
+    "minimum-stability": "stable",
     "require": {
         "php": ">=5.4.0"
     },
@@ -21,6 +21,5 @@
     "autoload": {
         "psr-0": { "EBT\\GeoZipLocation": "" }
     },
-    "minimum-stability": "dev",
     "target-dir": "EBT/GeoZipLocation"
 }
