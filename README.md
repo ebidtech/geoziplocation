@@ -6,7 +6,7 @@ geoziplocation
 Given zipcode returns location
 
 
-SAMPLE USAGE:
+Sample USAGE:
 
 ```
   $myFactory = new TranslatorFactory();
