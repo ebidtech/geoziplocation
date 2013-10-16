@@ -13,24 +13,24 @@ Sample USAGE:
   $ptTranslator = $myFactory->create('PT');
         
   $region = $ptTranslator->getLocationForZip('4730');
-  $region->getType();
-  $region->getName();
+  $region->getType(); //returns "region"
+  $region->getName(); //returns "Norte"
   $region->getId();
         
   if($region->hasSubLocation())
   {
     $zone->getSubLocation();
-    $zone->getType();
-    $zone->getName();
+    $zone->getType(); //returns "zone"
+    $zone->getName(); //returns "Braga"
     $zone->getId(); 
     
     if($zone->hasSubLocation())
     {
       $area->getSubLocation();
-      $area->getType();
-      $area->getName();
+      $area->getType(); //returns "area"
+      $area->getName(); //returns "Vila Verde"
       $area->getId();    
     }    
   }
-{code}        
+        
  ```
