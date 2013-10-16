@@ -17,7 +17,7 @@ use EBT\GeoZipLocation\Translator\PT\Resources\Data\DatabasePT;
 /**
  * Class RegionRepository
  */
-class RegionRepository extends  LocationRepository
+class RegionRepository extends LocationRepository
 {
     const LOCATION_TYPE = 'region';
 

@@ -52,8 +52,8 @@ abstract class Location implements LocationInterface
      * Constructor
      *
      * @param LocationRepositoryInterface $repo
-     * @param string $id
-     * @param string $name
+     * @param string                      $id
+     * @param string                      $name
      */
     public function __construct(LocationRepositoryInterface $repo, $id = null, $name = null)
     {
@@ -197,10 +197,7 @@ abstract class Location implements LocationInterface
      *
      * @return LocationRepositoryInterface
      */
-    abstract  public function getRepository();
-//    {
-//        return $this->repo;
-//    }
+    abstract public function getRepository();
 
     /**
      * Returns type of this location.
@@ -209,6 +206,4 @@ abstract class Location implements LocationInterface
      * @return string
      */
     abstract public function getType();
-
-
 }

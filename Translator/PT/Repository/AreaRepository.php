@@ -75,6 +75,4 @@ class AreaRepository extends LocationRepository
             throw new ResourceNotFoundException(sprintf('Unable to find Area for given id: %s.', $id));
         }
     }
-
-
 }
