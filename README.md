@@ -8,7 +8,7 @@ Given zipcode returns location
 
 SAMPLE USAGE:
 
-{code}
+```
   $myFactory = new TranslatorFactory();
   $ptTranslator = $myFactory->create('PT');
         
@@ -33,3 +33,4 @@ SAMPLE USAGE:
     }    
   }
 {code}        
+ ```
