@@ -5,7 +5,6 @@ geoziplocation
 
 Given zipcode returns location
 
-
 Sample USAGE:
 
 ```
