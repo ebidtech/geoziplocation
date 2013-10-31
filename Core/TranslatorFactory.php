@@ -33,7 +33,7 @@ class TranslatorFactory
         if (!class_exists($className)) {
             throw new \RuntimeException(
                 sprintf(
-                    'Invalid translator class /%s',
+                    'Invalid translator class %s',
                     $className
                 )
             );
