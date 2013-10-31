@@ -102,7 +102,7 @@ class Translator implements TranslatorInterface
      */
     public function getSanitizeZipCode($zipCode)
     {
-        if (strlen($zipCode) < 4) {
+        if (!is_string($zipCode) || strlen($zipCode) < 4) {
             return false;
         }
         $sanitizedZipCode = substr($zipCode, 0, 4);
