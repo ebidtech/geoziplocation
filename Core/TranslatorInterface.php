@@ -31,4 +31,13 @@ interface TranslatorInterface
      * @return string
      */
     public function getCountryCode();
+
+    /**
+     * Returns current's translator country code
+     *
+     * @param string $zipCode
+     *
+     * @return string|false Valid Zip code or False if it's impossible to sanitize
+     */
+    public function getSanitizeZipCode($zipCode);
 }

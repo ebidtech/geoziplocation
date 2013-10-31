@@ -60,4 +60,15 @@ class AreaRepositoryTest extends PHPUnit_Framework_TestCase
         $ptTranslator = $f->create('PT');
         $l = $ptTranslator->getLocationForZip('0000');
     }
+
+    /**
+     * testGetSanitizeZipCode
+     */
+    public function testGetSanitizeZipCode()
+    {
+        $f = new TranslatorFactory();
+        $ptTranslator = $f->create('PT');
+        $this->assertEquals('4480', $ptTranslator->getSanitizeZipCode('4480-254'));
+        $this->assertEquals(false, $ptTranslator->getSanitizeZipCode('0480'));
+    }
 }

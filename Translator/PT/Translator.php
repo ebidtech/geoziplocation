@@ -79,7 +79,9 @@ class Translator implements TranslatorInterface
      */
     public function getLocationForZip($zipCode)
     {
-        if (isset($this->map[$zipCode])) {
+        $zipCode = $this->getSanitizeZipCode($zipCode);
+
+        if (false !== $zipCode && isset($this->map[$zipCode])) {
             $area = $this->repo_area->getById($this->map[$zipCode][self::DATA_INDEX_AREA]);
             $zone = $this->repo_zone->getById($this->map[$zipCode][self::DATA_INDEX_ZONE]);
             $region = $this->repo_region->getById($this->map[$zipCode][self::DATA_INDEX_REGION]);
@@ -89,5 +91,22 @@ class Translator implements TranslatorInterface
         } else {
             throw new ResourceNotFoundException(sprintf('Unable to find a region for %s zipcode', $zipCode));
         }
+    }
+
+    /**
+     * Returns current's translator country code
+     *
+     * @param string $zipCode
+     *
+     * @return string|false Valid Zip code or False if it's impossible to sanitize
+     */
+    public function getSanitizeZipCode($zipCode)
+    {
+        if (strlen($zipCode) < 4) {
+            return false;
+        }
+        $sanitizedZipCode = substr($zipCode, 0, 4);
+
+        return filter_var($sanitizedZipCode, FILTER_VALIDATE_INT) ? $sanitizedZipCode : false;
     }
 }
