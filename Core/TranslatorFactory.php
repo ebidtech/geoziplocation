@@ -25,13 +25,14 @@ class TranslatorFactory
      *
      * @return TranslatorInterface a new translator
      *
+     * @throws TranslatorNotFoundException
      * @throws \RuntimeException
      */
     public function create($countryCode)
     {
         $className = sprintf('%s\%s\Translator', self::TRANSLATORS_NAMESPACE, $countryCode);
         if (!class_exists($className)) {
-            throw new \RuntimeException(
+            throw new TranslatorNotFoundException(
                 sprintf(
                     'Invalid translator class %s',
                     $className
