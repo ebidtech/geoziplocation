@@ -14,6 +14,6 @@ namespace EBT\GeoZipLocation\Exception;
 /**
  * TranslatorNotFoundException
  */
-class TranslatorNotFoundException extends \ResourceNotFoundException
+class TranslatorNotFoundException extends ResourceNotFoundException
 {
 }

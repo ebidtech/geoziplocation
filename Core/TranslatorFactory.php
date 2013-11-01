@@ -10,6 +10,7 @@
 namespace EBT\GeoZipLocation\Core;
 
 use EBT\GeoZipLocation\Core\TranslatorInterface;
+use EBT\GeoZipLocation\Exception\TranslatorNotFoundException;
 
 /**
  * Class TranslatorFactory
