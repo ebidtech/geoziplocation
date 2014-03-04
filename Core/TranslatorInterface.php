@@ -9,7 +9,7 @@
  */
 namespace EBT\GeoZipLocation\Core;
 
-use EBT\GeoZipLocation\Core\LocationInterface;
+use EBT\GeoZipLocation\Core\Location\LocationInterface;
 use EBT\GeoZipLocation\Exception\ResourceNotFoundException;
 
 interface TranslatorInterface

@@ -13,10 +13,7 @@ namespace EBT\GeoZipLocation\Tests\Translator\PT;
 use PHPUnit_Framework_TestCase;
 use EBT\GeoZipLocation\Core\TranslatorFactory;
 
-/**
- * Class AreaRepositoryTest
- */
-class AreaRepositoryTest extends PHPUnit_Framework_TestCase
+class TranslatorTest extends PHPUnit_Framework_TestCase
 {
     /**
      * testGetLocationForZip for Portugal
@@ -52,7 +49,7 @@ class AreaRepositoryTest extends PHPUnit_Framework_TestCase
     /**
      * testGetLocationForZipNotFound
      *
-     * @expectedException EBT\GeoZipLocation\Exception\ResourceNotFoundException
+     * @expectedException \EBT\GeoZipLocation\Exception\ResourceNotFoundException
      */
     public function testGetLocationForZipNotFound()
     {
