@@ -29,22 +29,22 @@ class TranslatorTest extends PHPUnit_Framework_TestCase
         $this->assertEquals(14, $l->getId());
 
         $this->assertTrue($l->hasSubLocation());
-//
-//        $l = $l->getSubLocation();
-//        $this->assertInstanceOf('EBT\GeoZipLocation\Core\Location\LocationInterface', $l);
-//        $this->assertEquals('zone', $l->getType());
-//        $this->assertEquals('Braga', $l->getName());
-//        $this->assertEquals(3, $l->getId());
-//
-//        $this->assertTrue($l->hasSubLocation());
-//
-//        $l = $l->getSubLocation();
-//        $this->assertInstanceOf('EBT\GeoZipLocation\Core\Location\LocationInterface', $l);
-//        $this->assertEquals('area', $l->getType());
-//        $this->assertEquals('Vila Verde', $l->getName());
-//        $this->assertEquals(313, $l->getId());
-//
-//        $this->assertFalse($l->hasSubLocation());
+
+        $l = $l->getSubLocation();
+        $this->assertInstanceOf('EBT\GeoZipLocation\Core\Location\LocationInterface', $l);
+        $this->assertEquals('zone', $l->getType());
+        $this->assertEquals('Madrid', $l->getName());
+        $this->assertEquals(28, $l->getId());
+
+        $this->assertTrue($l->hasSubLocation());
+
+        $l = $l->getSubLocation();
+        $this->assertInstanceOf('EBT\GeoZipLocation\Core\Location\LocationInterface', $l);
+        $this->assertEquals('area', $l->getType());
+        $this->assertEquals('NA', $l->getName());
+        $this->assertEquals(0, $l->getId());
+
+        $this->assertFalse($l->hasSubLocation());
     }
 
     /**
