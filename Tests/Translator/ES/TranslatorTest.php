@@ -8,8 +8,9 @@
  * file that was distributed with this source code.
  */
 
-namespace EBT\GeoZipLocation\Tests\Translator\PT;
+namespace EBT\GeoZipLocation\Tests\Translator\ES;
 
+use EBT\GeoZipLocation\Exception\ResourceNotFoundException;
 use PHPUnit_Framework_TestCase;
 use EBT\GeoZipLocation\Core\TranslatorFactory;
 
@@ -21,29 +22,46 @@ class TranslatorTest extends PHPUnit_Framework_TestCase
     public function testGetLocationForZip()
     {
         $f = new TranslatorFactory();
-        $ptTranslator = $f->create('PT');
-        $l = $ptTranslator->getLocationForZip('4730');
+        $ptTranslator = $f->create('ES');
+        $l = $ptTranslator->getLocationForZip('28008');
         $this->assertEquals('region', $l->getType());
-        $this->assertEquals('Norte', $l->getName());
-        $this->assertEquals(3, $l->getId());
+        $this->assertEquals('Madrid', $l->getName());
+        $this->assertEquals(14, $l->getId());
 
         $this->assertTrue($l->hasSubLocation());
 
         $l = $l->getSubLocation();
         $this->assertInstanceOf('EBT\GeoZipLocation\Core\Location\LocationInterface', $l);
         $this->assertEquals('zone', $l->getType());
-        $this->assertEquals('Braga', $l->getName());
-        $this->assertEquals(3, $l->getId());
+        $this->assertEquals('Madrid', $l->getName());
+        $this->assertEquals(28, $l->getId());
 
         $this->assertTrue($l->hasSubLocation());
 
         $l = $l->getSubLocation();
         $this->assertInstanceOf('EBT\GeoZipLocation\Core\Location\LocationInterface', $l);
         $this->assertEquals('area', $l->getType());
-        $this->assertEquals('Vila Verde', $l->getName());
-        $this->assertEquals(313, $l->getId());
+        $this->assertEquals('NA', $l->getName());
+        $this->assertEquals(0, $l->getId());
 
         $this->assertFalse($l->hasSubLocation());
+
+        $f = new TranslatorFactory();
+        $ptTranslator = $f->create('ES');
+        $l = $ptTranslator->getLocationForZip('07015');
+        $this->assertEquals('region', $l->getType());
+        $this->assertEquals('Baleares', $l->getName());
+        $this->assertEquals(4, $l->getId());
+
+        $this->assertTrue($l->hasSubLocation());
+
+        $l = $l->getSubLocation();
+        $this->assertInstanceOf('EBT\GeoZipLocation\Core\Location\LocationInterface', $l);
+        $this->assertEquals('zone', $l->getType());
+        $this->assertEquals('Baleares', $l->getName());
+        $this->assertEquals(07, $l->getId());
+
+        $this->assertTrue($l->hasSubLocation());
     }
 
     /**
@@ -54,7 +72,7 @@ class TranslatorTest extends PHPUnit_Framework_TestCase
     public function testGetLocationForZipNotFound()
     {
         $f = new TranslatorFactory();
-        $ptTranslator = $f->create('PT');
+        $ptTranslator = $f->create('ES');
         $l = $ptTranslator->getLocationForZip('0000');
     }
 
@@ -64,8 +82,8 @@ class TranslatorTest extends PHPUnit_Framework_TestCase
     public function testGetSanitizeZipCode()
     {
         $f = new TranslatorFactory();
-        $ptTranslator = $f->create('PT');
-        $this->assertEquals('4480', $ptTranslator->getSanitizeZipCode('4480-254'));
-        $this->assertEquals(false, $ptTranslator->getSanitizeZipCode('0480'));
+        $ptTranslator = $f->create('ES');
+        $this->assertEquals('28008', $ptTranslator->getSanitizeZipCode('28008aaa'));
+        $this->assertEquals(false, $ptTranslator->getSanitizeZipCode('1234'));
     }
 }
