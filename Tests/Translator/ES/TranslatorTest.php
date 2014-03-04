@@ -45,6 +45,15 @@ class TranslatorTest extends PHPUnit_Framework_TestCase
         $this->assertEquals(0, $l->getId());
 
         $this->assertFalse($l->hasSubLocation());
+
+        $f = new TranslatorFactory();
+        $ptTranslator = $f->create('ES');
+        $l = $ptTranslator->getLocationForZip('07015');
+        $this->assertEquals('region', $l->getType());
+        $this->assertEquals('Madrid', $l->getName());
+        $this->assertEquals(14, $l->getId());
+
+        $this->assertTrue($l->hasSubLocation());
     }
 
     /**
