@@ -16,7 +16,7 @@ use EBT\GeoZipLocation\Core\TranslatorFactory;
 class TranslatorTest extends PHPUnit_Framework_TestCase
 {
     /**
-     * testGetLocationForZip for Portugal
+     * testGetLocationForZip for Brazil
      */
     public function testGetLocationForZip()
     {
