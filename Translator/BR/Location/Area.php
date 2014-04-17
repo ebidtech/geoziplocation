@@ -11,7 +11,7 @@ namespace EBT\GeoZipLocation\Translator\BR\Location;
 
 use EBT\GeoZipLocation\Core\Location\Location;
 use EBT\GeoZipLocation\Core\Repository\LocationRepositoryInterface;
-use EBT\GeoZipLocation\Translator\PT\Repository\AreaRepository;
+use EBT\GeoZipLocation\Translator\BR\Repository\AreaRepository;
 
 class Area extends Location
 {

@@ -10,7 +10,7 @@
 namespace EBT\GeoZipLocation\Translator\BR\Resources\Data;
 
 /**
- * Class DatabasePT
+ * Class DatabaseBR
  */
 abstract class DatabaseBR
 {
