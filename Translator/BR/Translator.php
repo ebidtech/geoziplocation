@@ -90,14 +90,16 @@ class Translator implements TranslatorInterface
                     $zone = $this->repo_zone->getById($mapping[self::DATA_INDEX_ZONE]);
                     $region = $this->repo_region->getById($mapping[self::DATA_INDEX_REGION]);
                 } else {
-                    if (!isset($area)) {
-                        throw new ResourceNotFoundException(sprintf('Unable to find a region for %s zipcode', $zipCode));
-                    }
-                    $zone->setSubLocation($area);
-                    $region->setSubLocation($zone);
-                    return $region;
+                    break;
                 }
             }
+
+            if (!isset($area)) {
+                throw new ResourceNotFoundException(sprintf('Unable to find a region for %s zipcode', $zipCode));
+            }
+            $zone->setSubLocation($area);
+            $region->setSubLocation($zone);
+            return $region;
         }
 
         throw new ResourceNotFoundException(sprintf('Unable to find a region for %s zipcode', $zipCode));
