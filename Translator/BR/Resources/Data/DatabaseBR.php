@@ -57,7 +57,7 @@ abstract class DatabaseBR
     );
 
     public static $regions = array(
-        1 => 'São Paulo Metropolitan Region',
+        1 => 'São Paulo - Região Metropolitana',
         2 => 'Estado de São Paulo',
         3 => 'Estado de Rio de Janeiro',
         4 => 'Estado de Espírito Santo',

@@ -55,7 +55,19 @@ class TranslatorTest extends PHPUnit_Framework_TestCase
     {
         $f = new TranslatorFactory();
         $ptTranslator = $f->create('BR');
-        $l = $ptTranslator->getLocationForZip('0000');
+        $ptTranslator->getLocationForZip('0000');
+    }
+
+    /**
+     * testGetLocationForZipNotFound
+     *
+     * @expectedException \EBT\GeoZipLocation\Exception\ResourceNotFoundException
+     */
+    public function testGetLocationInvalidZip()
+    {
+        $f = new TranslatorFactory();
+        $ptTranslator = $f->create('BR');
+        $ptTranslator->getLocationForZip('00333');
     }
 
     /**
