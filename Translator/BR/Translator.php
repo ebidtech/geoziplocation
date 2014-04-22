@@ -72,37 +72,39 @@ class Translator implements TranslatorInterface
     /**
      * Returns the location for given zip code
      *
-     * @param string $zipCode
+     * @param string $wantedZipCode
      *
      * @return Region
      *
      * @throws \EBT\GeoZipLocation\Exception\ResourceNotFoundException
      */
-    public function getLocationForZip($zipCode)
+    public function getLocationForZip($wantedZipCode)
     {
-        $zipCode = $this->getSanitizeZipCode($zipCode);
+        $wantedZipCode = $this->getSanitizeZipCode($wantedZipCode);
 
-        if (false !== $zipCode) {
-            $intZipCode = (int) $zipCode;
+        if (false !== $wantedZipCode) {
+            $intWantedZipCode = (int) $wantedZipCode;
             foreach ($this->map as $postalCodeStart => $mapping) {
-                if ($postalCodeStart <= $intZipCode) {
+                if ($intWantedZipCode >= $postalCodeStart) {
                     $area = $this->repo_area->getById($mapping[self::DATA_INDEX_AREA]);
                     $zone = $this->repo_zone->getById($mapping[self::DATA_INDEX_ZONE]);
                     $region = $this->repo_region->getById($mapping[self::DATA_INDEX_REGION]);
                 } else {
+                    /* Already found in last cycle so end the search */
                     break;
                 }
             }
 
             if (!isset($area)) {
-                throw new ResourceNotFoundException(sprintf('Unable to find a region for %s zipcode', $zipCode));
+                /* this will happen when $intWantedZipCode is lower than the first valid zipcode */
+                throw new ResourceNotFoundException(sprintf('Unable to find a region for %s zipcode', $wantedZipCode));
             }
             $zone->setSubLocation($area);
             $region->setSubLocation($zone);
             return $region;
         }
 
-        throw new ResourceNotFoundException(sprintf('Unable to find a region for %s zipcode', $zipCode));
+        throw new ResourceNotFoundException(sprintf('Unable to find a region for %s zipcode', $wantedZipCode));
     }
 
     /**
