@@ -82,7 +82,7 @@ class Translator implements TranslatorInterface
     {
         $zipCode = $this->getSanitizeZipCode($zipCode);
 
-        $partialZipCode = substr($zipCode,0,2);
+        $partialZipCode = substr($zipCode, 0, 2);
 
         if (false !== $zipCode && isset($this->map[$partialZipCode])) {
             $area = $this->repo_area->getById($this->map[$partialZipCode][self::DATA_INDEX_AREA]);

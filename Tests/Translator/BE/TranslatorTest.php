@@ -77,7 +77,6 @@ class TranslatorTest extends PHPUnit_Framework_TestCase
         $this->assertEquals(8, $l->getId());
 
 
-
         $f = new TranslatorFactory();
         $ptTranslator = $f->create('BE');
         $l = $ptTranslator->getLocationForZip('3000');
@@ -94,7 +93,6 @@ class TranslatorTest extends PHPUnit_Framework_TestCase
         $this->assertEquals(3, $l->getId());
 
 
-
         $f = new TranslatorFactory();
         $ptTranslator = $f->create('BE');
         $l = $ptTranslator->getLocationForZip('1305');
@@ -109,7 +107,6 @@ class TranslatorTest extends PHPUnit_Framework_TestCase
         $this->assertEquals('zone', $l->getType());
         $this->assertEquals('Brabant wallon', $l->getName());
         $this->assertEquals(7, $l->getId());
-
 
 
         $f = new TranslatorFactory();
