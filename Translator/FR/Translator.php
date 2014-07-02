@@ -11,7 +11,7 @@ namespace EBT\GeoZipLocation\Translator\FR;
 
 use EBT\GeoZipLocation\Core\TranslatorInterface;
 use EBT\GeoZipLocation\Exception\ResourceNotFoundException;
-use EBT\GeoZipLocation\Translator\BR\Location\Region;
+use EBT\GeoZipLocation\Translator\FR\Location\Region;
 use EBT\GeoZipLocation\Translator\FR\Repository\AreaRepository;
 use EBT\GeoZipLocation\Translator\FR\Repository\RegionRepository;
 use EBT\GeoZipLocation\Translator\FR\Repository\ZoneRepository;
@@ -78,18 +78,18 @@ class Translator implements TranslatorInterface
      *
      * @throws \EBT\GeoZipLocation\Exception\ResourceNotFoundException
      */
-    public function getLocationForZip($zipCode1)
+    public function getLocationForZip($zipCode)
     {
 
-        $zipCode = $this->getSanitizeZipCode($zipCode1);
+        $zipCode = $this->getSanitizeZipCode($zipCode);
         /*
          * In france the Zone Zip-code can be two or three digits if not found with two try with three
          * Example: Corse du sud (2A) == 200 && 201
          *          Guyane == 973
         */
-        $partialZipCode = substr($zipCode,0,2);
-        if (!isset($this->map[$partialZipCode])){
-            $partialZipCode = substr($zipCode,0,3);
+        $partialZipCode = substr($zipCode, 0, 2);
+        if (!isset($this->map[$partialZipCode])) {
+            $partialZipCode = substr($zipCode, 0, 3);
         }
 
         if (false !== $zipCode && isset($this->map[$partialZipCode])) {
@@ -100,7 +100,7 @@ class Translator implements TranslatorInterface
             $region->setSubLocation($zone);
             return $region;
         } else {
-            throw new ResourceNotFoundException(sprintf('Unable to find a region for \'%s\' \'%s\' zipcode', $zipCode,$zipCode1));
+            throw new ResourceNotFoundException(sprintf('Unable to find a region for \'%s\' zipcode', $zipCode));
         }
     }
 
@@ -120,11 +120,11 @@ class Translator implements TranslatorInterface
 
         $sanitizedZipCode = substr($zipCode, 0, 5);
 
-        if (strlen($sanitizedZipCode) == 4 ){
-            $sanitizedZipCode = "0".$sanitizedZipCode;
+        if (strlen($sanitizedZipCode) == 4) {
+            $sanitizedZipCode = "0" . $sanitizedZipCode;
             //if last digit is an alfa in invalid (in france1), then cut off the last char, and insert left zero
-        }else if (ctype_alpha($sanitizedZipCode[4])){
-            $sanitizedZipCode = "0".$sanitizedZipCode;
+        } else if (ctype_alpha($sanitizedZipCode[4])) {
+            $sanitizedZipCode = "0" . $sanitizedZipCode;
             $sanitizedZipCode = substr($sanitizedZipCode, 0, 5);
         }
 
