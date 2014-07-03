@@ -20,7 +20,7 @@ use PHPUnit_Framework_TestCase;
 class AreaRepositoryTest extends PHPUnit_Framework_TestCase
 {
     /**
-     * testGetType
+     * test to assert area type
      */
     public function testGetType()
     {
@@ -29,7 +29,7 @@ class AreaRepositoryTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * testGetAll
+     * test to get all values
      */
     public function testGetAll()
     {

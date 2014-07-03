@@ -71,7 +71,6 @@ class Translator implements TranslatorInterface
 
     /**
      * Returns the location for given zip code
-     *
      * @param string $zipCode
      *
      * @return Region

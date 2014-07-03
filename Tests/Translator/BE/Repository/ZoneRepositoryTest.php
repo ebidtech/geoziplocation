@@ -20,7 +20,7 @@ use PHPUnit_Framework_TestCase;
 class ZoneRepositoryTest extends PHPUnit_Framework_TestCase
 {
     /**
-     * testGetType
+     * test to assert zone type
      */
     public function testGetType()
     {
@@ -29,7 +29,7 @@ class ZoneRepositoryTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * testGetAll
+     * test to get all values
      */
     public function testGetAll()
     {

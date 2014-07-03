@@ -21,111 +21,111 @@ class TranslatorTest extends PHPUnit_Framework_TestCase
      */
     public function testGetLocationForZip()
     {
-        $f = new TranslatorFactory();
-        $ptTranslator = $f->create('BE');
-        $l = $ptTranslator->getLocationForZip('1000');
-        $this->assertEquals('region', $l->getType());
-        $this->assertEquals('Brussels', $l->getName());
-        $this->assertEquals(1, $l->getId());
+        $transFac = new TranslatorFactory();
+        $ptTranslator = $transFac->create('BE');
+        $location = $ptTranslator->getLocationForZip('1000');
+        $this->assertEquals('region', $location->getType());
+        $this->assertEquals('Brussels', $location->getName());
+        $this->assertEquals(1, $location->getId());
 
-        $this->assertTrue($l->hasSubLocation());
+        $this->assertTrue($location->hasSubLocation());
 
-        $l = $l->getSubLocation();
-        $this->assertInstanceOf('EBT\GeoZipLocation\Core\Location\LocationInterface', $l);
-        $this->assertEquals('zone', $l->getType());
-        $this->assertEquals('Brussels', $l->getName());
-        $this->assertEquals(1, $l->getId());
+        $location = $location->getSubLocation();
+        $this->assertInstanceOf('EBT\GeoZipLocation\Core\Location\LocationInterface', $location);
+        $this->assertEquals('zone', $location->getType());
+        $this->assertEquals('Brussels', $location->getName());
+        $this->assertEquals(1, $location->getId());
 
-        $this->assertTrue($l->hasSubLocation());
+        $this->assertTrue($location->hasSubLocation());
 
-        $l = $l->getSubLocation();
-        $this->assertInstanceOf('EBT\GeoZipLocation\Core\Location\LocationInterface', $l);
-        $this->assertEquals('area', $l->getType());
-        $this->assertEquals('NA', $l->getName());
-        $this->assertEquals(0, $l->getId());
+        $location = $location->getSubLocation();
+        $this->assertInstanceOf('EBT\GeoZipLocation\Core\Location\LocationInterface', $location);
+        $this->assertEquals('area', $location->getType());
+        $this->assertEquals('NA', $location->getName());
+        $this->assertEquals(0, $location->getId());
 
-        $this->assertFalse($l->hasSubLocation());
+        $this->assertFalse($location->hasSubLocation());
 
-        $f = new TranslatorFactory();
-        $ptTranslator = $f->create('BE');
-        $l = $ptTranslator->getLocationForZip('6506');
-        $this->assertEquals('region', $l->getType());
-        $this->assertEquals('Flandres', $l->getName());
-        $this->assertEquals(3, $l->getId());
+        $transFac = new TranslatorFactory();
+        $ptTranslator = $transFac->create('BE');
+        $location = $ptTranslator->getLocationForZip('6506');
+        $this->assertEquals('region', $location->getType());
+        $this->assertEquals('Flandres', $location->getName());
+        $this->assertEquals(3, $location->getId());
 
-        $this->assertTrue($l->hasSubLocation());
+        $this->assertTrue($location->hasSubLocation());
 
-        $l = $l->getSubLocation();
-        $this->assertInstanceOf('EBT\GeoZipLocation\Core\Location\LocationInterface', $l);
-        $this->assertEquals('zone', $l->getType());
-        $this->assertEquals('Hainaut', $l->getName());
-        $this->assertEquals(8, $l->getId());
+        $location = $location->getSubLocation();
+        $this->assertInstanceOf('EBT\GeoZipLocation\Core\Location\LocationInterface', $location);
+        $this->assertEquals('zone', $location->getType());
+        $this->assertEquals('Hainaut', $location->getName());
+        $this->assertEquals(8, $location->getId());
 
-        $f = new TranslatorFactory();
-        $ptTranslator = $f->create('BE');
-        $l = $ptTranslator->getLocationForZip('6506');
-        $this->assertEquals('region', $l->getType());
-        $this->assertEquals('Flandres', $l->getName());
-        $this->assertEquals(3, $l->getId());
+        $transFac = new TranslatorFactory();
+        $ptTranslator = $transFac->create('BE');
+        $location = $ptTranslator->getLocationForZip('6506');
+        $this->assertEquals('region', $location->getType());
+        $this->assertEquals('Flandres', $location->getName());
+        $this->assertEquals(3, $location->getId());
 
-        $this->assertTrue($l->hasSubLocation());
+        $this->assertTrue($location->hasSubLocation());
 
-        $l = $l->getSubLocation();
-        $this->assertInstanceOf('EBT\GeoZipLocation\Core\Location\LocationInterface', $l);
-        $this->assertEquals('zone', $l->getType());
-        $this->assertEquals('Hainaut', $l->getName());
-        $this->assertEquals(8, $l->getId());
-
-
-        $f = new TranslatorFactory();
-        $ptTranslator = $f->create('BE');
-        $l = $ptTranslator->getLocationForZip('3000');
-        $this->assertEquals('region', $l->getType());
-        $this->assertEquals('Wallonie', $l->getName());
-        $this->assertEquals(2, $l->getId());
-
-        $this->assertTrue($l->hasSubLocation());
-
-        $l = $l->getSubLocation();
-        $this->assertInstanceOf('EBT\GeoZipLocation\Core\Location\LocationInterface', $l);
-        $this->assertEquals('zone', $l->getType());
-        $this->assertEquals('Vlaams-Brabant', $l->getName());
-        $this->assertEquals(3, $l->getId());
+        $location = $location->getSubLocation();
+        $this->assertInstanceOf('EBT\GeoZipLocation\Core\Location\LocationInterface', $location);
+        $this->assertEquals('zone', $location->getType());
+        $this->assertEquals('Hainaut', $location->getName());
+        $this->assertEquals(8, $location->getId());
 
 
-        $f = new TranslatorFactory();
-        $ptTranslator = $f->create('BE');
-        $l = $ptTranslator->getLocationForZip('1305');
-        $this->assertEquals('region', $l->getType());
-        $this->assertEquals('Flandres', $l->getName());
-        $this->assertEquals(3, $l->getId());
+        $transFac = new TranslatorFactory();
+        $ptTranslator = $transFac->create('BE');
+        $location = $ptTranslator->getLocationForZip('3000');
+        $this->assertEquals('region', $location->getType());
+        $this->assertEquals('Wallonie', $location->getName());
+        $this->assertEquals(2, $location->getId());
 
-        $this->assertTrue($l->hasSubLocation());
+        $this->assertTrue($location->hasSubLocation());
 
-        $l = $l->getSubLocation();
-        $this->assertInstanceOf('EBT\GeoZipLocation\Core\Location\LocationInterface', $l);
-        $this->assertEquals('zone', $l->getType());
-        $this->assertEquals('Brabant wallon', $l->getName());
-        $this->assertEquals(7, $l->getId());
-
-
-        $f = new TranslatorFactory();
-        $ptTranslator = $f->create('BE');
-        $l = $ptTranslator->getLocationForZip('6700');
-        $this->assertEquals('region', $l->getType());
-        $this->assertEquals('Flandres', $l->getName());
-        $this->assertEquals(3, $l->getId());
-
-        $this->assertTrue($l->hasSubLocation());
-
-        $l = $l->getSubLocation();
-        $this->assertInstanceOf('EBT\GeoZipLocation\Core\Location\LocationInterface', $l);
-        $this->assertEquals('zone', $l->getType());
-        $this->assertEquals('Luxembourg', $l->getName());
-        $this->assertEquals(10, $l->getId());
+        $location = $location->getSubLocation();
+        $this->assertInstanceOf('EBT\GeoZipLocation\Core\Location\LocationInterface', $location);
+        $this->assertEquals('zone', $location->getType());
+        $this->assertEquals('Vlaams-Brabant', $location->getName());
+        $this->assertEquals(3, $location->getId());
 
 
-        $this->assertTrue($l->hasSubLocation());
+        $transFac = new TranslatorFactory();
+        $ptTranslator = $transFac->create('BE');
+        $location = $ptTranslator->getLocationForZip('1305');
+        $this->assertEquals('region', $location->getType());
+        $this->assertEquals('Flandres', $location->getName());
+        $this->assertEquals(3, $location->getId());
+
+        $this->assertTrue($location->hasSubLocation());
+
+        $location = $location->getSubLocation();
+        $this->assertInstanceOf('EBT\GeoZipLocation\Core\Location\LocationInterface', $location);
+        $this->assertEquals('zone', $location->getType());
+        $this->assertEquals('Brabant wallon', $location->getName());
+        $this->assertEquals(7, $location->getId());
+
+
+        $transFac = new TranslatorFactory();
+        $ptTranslator = $transFac->create('BE');
+        $location = $ptTranslator->getLocationForZip('6700');
+        $this->assertEquals('region', $location->getType());
+        $this->assertEquals('Flandres', $location->getName());
+        $this->assertEquals(3, $location->getId());
+
+        $this->assertTrue($location->hasSubLocation());
+
+        $location = $location->getSubLocation();
+        $this->assertInstanceOf('EBT\GeoZipLocation\Core\Location\LocationInterface', $location);
+        $this->assertEquals('zone', $location->getType());
+        $this->assertEquals('Luxembourg', $location->getName());
+        $this->assertEquals(10, $location->getId());
+
+
+        $this->assertTrue($location->hasSubLocation());
     }
 
     /**
@@ -135,9 +135,9 @@ class TranslatorTest extends PHPUnit_Framework_TestCase
      */
     public function testGetLocationForZipNotFound()
     {
-        $f = new TranslatorFactory();
-        $ptTranslator = $f->create('BE');
-        $l = $ptTranslator->getLocationForZip('0000');
+        $transFac = new TranslatorFactory();
+        $ptTranslator = $transFac->create('BE');
+        $location = $ptTranslator->getLocationForZip('0000');
     }
 
     /**
@@ -145,8 +145,8 @@ class TranslatorTest extends PHPUnit_Framework_TestCase
      */
     public function testGetSanitizeZipCode()
     {
-        $f = new TranslatorFactory();
-        $ptTranslator = $f->create('BE');
+        $transFac = new TranslatorFactory();
+        $ptTranslator = $transFac->create('BE');
         $this->assertEquals('2808', $ptTranslator->getSanitizeZipCode('2808aaa'));
         $this->assertEquals(false, $ptTranslator->getSanitizeZipCode('123'));
     }
