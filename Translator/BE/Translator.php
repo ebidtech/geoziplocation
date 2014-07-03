@@ -75,7 +75,7 @@ class Translator implements TranslatorInterface
      *
      * @return Region
      *
-     * @throws \EBT\GeoZipLocation\Exception\ResourceNotFoundException
+     * @throws ResourceNotFoundException
      */
     public function getLocationForZip($zipCode)
     {
