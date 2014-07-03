@@ -7,22 +7,22 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-namespace EBT\GeoZipLocation\Translator\ES;
+namespace EBT\GeoZipLocation\Translator\BE;
 
 use EBT\GeoZipLocation\Core\TranslatorInterface;
 use EBT\GeoZipLocation\Exception\ResourceNotFoundException;
-use EBT\GeoZipLocation\Translator\BR\Location\Region;
-use EBT\GeoZipLocation\Translator\ES\Repository\AreaRepository;
-use EBT\GeoZipLocation\Translator\ES\Repository\RegionRepository;
-use EBT\GeoZipLocation\Translator\ES\Repository\ZoneRepository;
-use EBT\GeoZipLocation\Translator\ES\Resources\Data\DatabaseES;
+use EBT\GeoZipLocation\Translator\BE\Location\Region;
+use EBT\GeoZipLocation\Translator\BE\Repository\AreaRepository;
+use EBT\GeoZipLocation\Translator\BE\Repository\RegionRepository;
+use EBT\GeoZipLocation\Translator\BE\Repository\ZoneRepository;
+use EBT\GeoZipLocation\Translator\BE\Resources\Data\DatabaseBE;
 
 /**
  * Class Translator
  */
 class Translator implements TranslatorInterface
 {
-    const COUNTRY_CODE = 'ES';
+    const COUNTRY_CODE = 'BE';
     const DATA_INDEX_AREA = 'area_id';
     const DATA_INDEX_ZONE = 'zone_id';
     const DATA_INDEX_REGION = 'region_id';
@@ -56,7 +56,7 @@ class Translator implements TranslatorInterface
         $this->repo_zone = new ZoneRepository();
         $this->repo_region = new RegionRepository();
 
-        $this->map = DatabaseES::$map;
+        $this->map = DatabaseBE::$map;
     }
 
     /**
@@ -71,17 +71,21 @@ class Translator implements TranslatorInterface
 
     /**
      * Returns the location for given zip code
-     *
      * @param string $zipCode
      *
      * @return Region
      *
-     * @throws \EBT\GeoZipLocation\Exception\ResourceNotFoundException
+     * @throws ResourceNotFoundException
      */
     public function getLocationForZip($zipCode)
     {
-        $zipCode = $this->getSanitizeZipCode($zipCode);
 
+        $zipCode = $this->getSanitizeZipCode($zipCode);
+        /*
+         * In france the Zone Zip-code can be two or three digits if not found with two try with three
+         * Example: Corse du sud (2A) == 200 && 201
+         *          Guyane == 973
+        */
         $partialZipCode = substr($zipCode, 0, 2);
 
         if (false !== $zipCode && isset($this->map[$partialZipCode])) {
@@ -92,12 +96,13 @@ class Translator implements TranslatorInterface
             $region->setSubLocation($zone);
             return $region;
         } else {
-            throw new ResourceNotFoundException(sprintf('Unable to find a region for %s zipcode', $zipCode));
+            throw new ResourceNotFoundException(sprintf('Unable to find a region for \'%s\' zipcode', $zipCode));
         }
     }
 
     /**
      * Returns current's translator country code
+     * Because there are many zip Code with jutt 4 digits, for example: 2120 this is transformed to 02120
      *
      * @param string $zipCode
      *
@@ -105,10 +110,11 @@ class Translator implements TranslatorInterface
      */
     public function getSanitizeZipCode($zipCode)
     {
-        if (!is_string($zipCode) || strlen($zipCode) < 5) {
+        if (!is_string($zipCode) || strlen($zipCode) < 4) {
             return false;
         }
-        $sanitizedZipCode = substr($zipCode, 0, 5);
+
+        $sanitizedZipCode = substr($zipCode, 0, 4);
 
         return $sanitizedZipCode;
     }
