@@ -141,7 +141,7 @@ abstract class DatabaseBE
 
     public static $regions = array(
         1 => 'Brussels',
-        2 => 'Wallonie',
-        3 => 'Flandres',
+        2 => 'Flandres',
+        3 => 'Wallonie',
     );
 }
