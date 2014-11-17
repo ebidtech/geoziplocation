@@ -92,8 +92,7 @@ class Translator implements TranslatorInterface
          * Polish zone/region could easily be computed by the first, second or the third digit(s) of the zip code. To
          * achieve that we will try to find one match on array map by exactly this order.
          */
-
-        for ($substrSize = 1; $substrSize <=5; $substrSize++) {
+        for ($substrSize = 5; $substrSize >=1; $substrSize--) {
             $searchPattern = substr($zipCode, 0, $substrSize);
             if (isset($this->map[$searchPattern])) {
                 $area = $this->repo_area->getById($this->map[$searchPattern][self::DATA_INDEX_AREA]);
