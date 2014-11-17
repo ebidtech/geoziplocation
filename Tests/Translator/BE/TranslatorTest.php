@@ -50,7 +50,7 @@ class TranslatorTest extends PHPUnit_Framework_TestCase
         $ptTranslator = $transFac->create('BE');
         $location = $ptTranslator->getLocationForZip('6506');
         $this->assertEquals('region', $location->getType());
-        $this->assertEquals('Flandres', $location->getName());
+        $this->assertEquals('Wallonie', $location->getName());
         $this->assertEquals(3, $location->getId());
 
         $this->assertTrue($location->hasSubLocation());
@@ -65,7 +65,7 @@ class TranslatorTest extends PHPUnit_Framework_TestCase
         $ptTranslator = $transFac->create('BE');
         $location = $ptTranslator->getLocationForZip('6506');
         $this->assertEquals('region', $location->getType());
-        $this->assertEquals('Flandres', $location->getName());
+        $this->assertEquals('Wallonie', $location->getName());
         $this->assertEquals(3, $location->getId());
 
         $this->assertTrue($location->hasSubLocation());
@@ -81,7 +81,7 @@ class TranslatorTest extends PHPUnit_Framework_TestCase
         $ptTranslator = $transFac->create('BE');
         $location = $ptTranslator->getLocationForZip('3000');
         $this->assertEquals('region', $location->getType());
-        $this->assertEquals('Wallonie', $location->getName());
+        $this->assertEquals('Flandres', $location->getName());
         $this->assertEquals(2, $location->getId());
 
         $this->assertTrue($location->hasSubLocation());
@@ -97,7 +97,7 @@ class TranslatorTest extends PHPUnit_Framework_TestCase
         $ptTranslator = $transFac->create('BE');
         $location = $ptTranslator->getLocationForZip('1305');
         $this->assertEquals('region', $location->getType());
-        $this->assertEquals('Flandres', $location->getName());
+        $this->assertEquals('Wallonie', $location->getName());
         $this->assertEquals(3, $location->getId());
 
         $this->assertTrue($location->hasSubLocation());
@@ -113,7 +113,7 @@ class TranslatorTest extends PHPUnit_Framework_TestCase
         $ptTranslator = $transFac->create('BE');
         $location = $ptTranslator->getLocationForZip('6700');
         $this->assertEquals('region', $location->getType());
-        $this->assertEquals('Flandres', $location->getName());
+        $this->assertEquals('Wallonie', $location->getName());
         $this->assertEquals(3, $location->getId());
 
         $this->assertTrue($location->hasSubLocation());
