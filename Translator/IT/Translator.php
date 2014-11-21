@@ -7,23 +7,23 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-namespace EBT\GeoZipLocation\Translator\PL;
+namespace EBT\GeoZipLocation\Translator\IT;
 
 use EBT\GeoZipLocation\Core\TranslatorInterface;
 use EBT\GeoZipLocation\Exception\ResourceNotFoundException;
 use EBT\GeoZipLocation\Exception\TranslatorNotFoundException;
-use EBT\GeoZipLocation\Translator\PL\Location\Region;
-use EBT\GeoZipLocation\Translator\PL\Repository\AreaRepository;
-use EBT\GeoZipLocation\Translator\PL\Repository\RegionRepository;
-use EBT\GeoZipLocation\Translator\PL\Repository\ZoneRepository;
-use EBT\GeoZipLocation\Translator\PL\Resources\Data\DatabasePL;
+use EBT\GeoZipLocation\Translator\IT\Location\Region;
+use EBT\GeoZipLocation\Translator\IT\Repository\AreaRepository;
+use EBT\GeoZipLocation\Translator\IT\Repository\RegionRepository;
+use EBT\GeoZipLocation\Translator\IT\Repository\ZoneRepository;
+use EBT\GeoZipLocation\Translator\IT\Resources\Data\DatabaseIT;
 
 /**
  * Class Translator
  */
 class Translator implements TranslatorInterface
 {
-    const COUNTRY_CODE = 'PL';
+    const COUNTRY_CODE = 'IT';
     const DATA_INDEX_AREA = 'area_id';
     const DATA_INDEX_ZONE = 'zone_id';
     const DATA_INDEX_REGION = 'region_id';
@@ -57,7 +57,7 @@ class Translator implements TranslatorInterface
         $this->repo_zone = new ZoneRepository();
         $this->repo_region = new RegionRepository();
 
-        $this->map = DatabasePL::$map;
+        $this->map = DatabaseIT::$map;
     }
 
     /**
@@ -89,19 +89,16 @@ class Translator implements TranslatorInterface
         }
 
         /*
-         * Polish zone/region could easily be computed by the first, second or the third digit(s) of the zip code. To
-         * achieve that we will try to find one match on array map by exactly this order.
+         * Italian has a mapping one to one (zipcodee => geolocation), so, we just need to verify if
+         * the zipcode exists on the mapping. Otherwise we throw an excption
          */
-        for ($substrSize = 5; $substrSize >=1; $substrSize--) {
-            $searchPattern = substr($zipCode, 0, $substrSize);
-            if (isset($this->map[$searchPattern])) {
-                $area = $this->repo_area->getById($this->map[$searchPattern][self::DATA_INDEX_AREA]);
-                $zone = $this->repo_zone->getById($this->map[$searchPattern][self::DATA_INDEX_ZONE]);
-                $region = $this->repo_region->getById($this->map[$searchPattern][self::DATA_INDEX_REGION]);
-                $zone->setSubLocation($area);
-                $region->setSubLocation($zone);
-                return $region;
-            }
+        if (isset($this->map[$zipCode])) {
+            $area = $this->repo_area->getById($this->map[$zipCode][self::DATA_INDEX_AREA]);
+            $zone = $this->repo_zone->getById($this->map[$zipCode][self::DATA_INDEX_ZONE]);
+            $region = $this->repo_region->getById($this->map[$zipCode][self::DATA_INDEX_REGION]);
+            $zone->setSubLocation($area);
+            $region->setSubLocation($zone);
+            return $region;
         }
 
         /* If we reach this point then no region was found. throwing an error */
@@ -110,7 +107,6 @@ class Translator implements TranslatorInterface
 
     /**
      * Returns current's translator country code
-     * Because there are many zip Code with jutt 4 digits, for example: 2120 this is transformed to 02120
      *
      * @param string $zipCode
      *
@@ -118,18 +114,12 @@ class Translator implements TranslatorInterface
      */
     public function getSanitizeZipCode($zipCode)
     {
-        if (!is_string($zipCode) || strlen($zipCode) < 4) {
+        $zipCode = trim($zipCode);
+        $zipCodeLen = strlen($zipCode);
+        if (!is_string($zipCode) || $zipCodeLen > 5) {
             return false;
         }
 
-        /* let me remove all spaces and slashes from the zip code */
-        $sanitizedZipCode = substr(str_replace('-', '', trim($zipCode, ' -')), 0, 5);
-
-        /* If we have only 4 digits, lets complete the zip code with an extra 0 to the left */
-        if (strlen($sanitizedZipCode) == 4) {
-            $sanitizedZipCode = "0" . $sanitizedZipCode;
-        }
-
-        return $sanitizedZipCode;
+        return str_repeat('0', 5 - $zipCodeLen) . $zipCode;
     }
 }
