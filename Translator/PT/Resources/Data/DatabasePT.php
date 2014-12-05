@@ -1107,7 +1107,6 @@ abstract class DatabasePT
         18 => 'Viseu',
         31 => 'Madeira',
         41 => 'Açores',
-
     );
 
     public static $regions = array(
@@ -1119,6 +1118,5 @@ abstract class DatabasePT
         6 => 'Algarve',
         7 => 'Madeira',
         8 => 'Açores',
-
     );
 }

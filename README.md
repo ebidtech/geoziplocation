@@ -9,9 +9,9 @@ Sample USAGE:
 
 ```
         $myFactory = new TranslatorFactory();
-        $ptTranslator = $myFactory->create('PT');
+        $deTranslator = $myFactory->create('PT');
 
-        $region = $ptTranslator->getLocationForZip('4730');
+        $region = $deTranslator->getLocationForZip('4730');
         $region->getType(); //returns "region"
         $region->getName(); //returns "Norte"
         $region->getId();
